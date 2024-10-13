@@ -1,4 +1,4 @@
-import NavigationButton from './NavigationButton';
+import CategoryButton from '../CategoryButton';
 
 function Navigation() {
   return (
@@ -49,7 +49,7 @@ function Navigation() {
 
       <div className="md:hidden" id="mobile-menu">
         <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-          <NavigationButton title="Home" />
+          <CategoryButton title="Home" activated={false} />
         </div>
       </div>
     </div>
