@@ -10,6 +10,9 @@ export default {
         foreground: '#252525',
         'foreground-secondary': '#78716C',
         accent: '#E5E7EB'
+      },
+      maxHeight: {
+        'calcNav': 'calc(100vh - 64px)',
       }
     }
   },

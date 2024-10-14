@@ -6,19 +6,19 @@ function CategoryFilterSelector() {
 
   return (
     <div className="text-foreground flex">
-      <span className="flex items-center">
+      <span className="flex items-center text-xs">
         <input
           type="radio"
           name="category"
           value="allCategories"
-          className={` mr-2`}
+          className={`mr-2`}
           checked={selectedCategory === CategoryFilter.ALL}
           onChange={() => setSelectedCategory(CategoryFilter.ALL)}
         />
         All categories
       </span>
 
-      <span className="flex items-center">
+      <span className="flex items-center text-xs">
         <input
           type="radio"
           name="category"
