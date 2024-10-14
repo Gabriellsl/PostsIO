@@ -8,6 +8,7 @@ export default {
         'primary-foreground': '#E3E3E3',
         surface: '#FFFFFF',
         foreground: '#252525',
+        'foreground-secondary': '#78716C',
         accent: '#E5E7EB'
       }
     }
