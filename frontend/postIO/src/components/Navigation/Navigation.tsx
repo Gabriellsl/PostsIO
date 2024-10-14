@@ -79,7 +79,7 @@ function Navigation({ children }: NavigationProps) {
           </div>
         </div>
       </div>
-      <div id="contentContainer" className="sm:h-calcNav md:h-screen overflow-auto">
+      <div id="contentContainer" className="h-calcNav md:h-screen overflow-auto">
         {children}
       </div>
     </div>

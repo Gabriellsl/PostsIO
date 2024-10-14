@@ -11,7 +11,7 @@ function Post({ date, description, categories }: PostProps) {
     <div className="px-4 py-8 flex flex-col border-b">
       <label className="text-primary text-sm font-semibold">{date}</label>
       <span className="pt-4 text-sm text-foreground-secondary">{description}</span>
-      <div className="pt-4">
+      <div className="pt-4 flex flex-wrap gap-2">
         {categories.map((categoryName) => {
           return <CategoryButton title={categoryName}></CategoryButton>;
         })}
