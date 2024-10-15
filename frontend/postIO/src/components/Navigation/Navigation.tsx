@@ -29,6 +29,7 @@ function Navigation({ children }: NavigationProps) {
 
   const handleNavigateToCategory = (categoryId: string) => {
     navigate(`/category/${categoryId}/posts`);
+    setShowMenuItems(false);
   };
 
   return (
@@ -85,7 +86,7 @@ function Navigation({ children }: NavigationProps) {
         </nav>
 
         <div
-          className={`${showMenuItems ? 'max-h-40' : 'max-h-0'} md:max-h-screen	 md:w-80 md:h-screen overflow-hidden transition-all ease-in-out delay-200 border-b-2 mb-2 md:border-r border-accent`}
+          className={`${showMenuItems ? 'max-h-fit' : 'max-h-0'} md:max-h-screen	 md:w-80 md:h-screen overflow-hidden transition-all ease-in-out delay-200 border-b-2 mb-2 md:border-r border-accent`}
           id="mobile-menu"
         >
           <div className="space-y-1 pt-6 px-2">
