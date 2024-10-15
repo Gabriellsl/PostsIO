@@ -5,6 +5,7 @@ import CategoryFilterSelector from '../CategoryFilterSelector';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CategoryContext } from '../../contexts/CategortyContext';
 import Loading from '../Loading';
+import { ParamsContext } from '../../contexts/ParamsContext';
 
 interface NavigationProps {
   children: React.ReactNode;
@@ -14,8 +15,9 @@ function Navigation({ children }: NavigationProps) {
   const [showMenuItems, setShowMenuItems] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const categoryContext = useContext(CategoryContext);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { categoryId } = useParams();
+  const paramsContext = useContext(ParamsContext);
 
   if (!categoryContext) {
     throw new Error('useContext must be used inside a CategoryProvider');
@@ -30,9 +32,15 @@ function Navigation({ children }: NavigationProps) {
     setShowMenuItems(!showMenuItems);
   };
 
+  useEffect(() => {
+    if (!paramsContext.categoryId) return;
+    setSelectedCategory(paramsContext.categoryId);
+  }, [paramsContext.categoryId]);
+
   const handleNavigateToCategory = (categoryId: string) => {
     navigate(`/category/${categoryId}/posts`);
     setShowMenuItems(false);
+    setSelectedCategory(categoryId);
   };
 
   return (
@@ -54,14 +62,14 @@ function Navigation({ children }: NavigationProps) {
                       className="block h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                       stroke="currentColor"
                       aria-hidden="true"
                       data-slot="icon"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                       />
                     </svg>
@@ -70,15 +78,11 @@ function Navigation({ children }: NavigationProps) {
                       className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                       stroke="currentColor"
                       data-slot="icon"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18 18 6M6 6l12 12"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                   )}
                 </button>
@@ -103,12 +107,11 @@ function Navigation({ children }: NavigationProps) {
                   id={category.id}
                   title={category.name}
                   isFavorite={category.favorite}
-                  activated={category.id === categoryId}
+                  activated={category.id === selectedCategory}
                   onClick={handleNavigateToCategory}
                 />
               );
             })}
-            {categoryId}
           </div>
         </div>
       </div>
