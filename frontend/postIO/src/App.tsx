@@ -11,16 +11,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navigation>
-          <CategoryProvider>
+        <CategoryProvider>
+          <Navigation>
             <Routes>
               <Route path="/" element={<Homepage />}></Route>
               <Route path="/category/:categoryId/" element={<Category />}></Route>
               <Route path="/category/:categoryId/posts" element={<Category />}></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
-          </CategoryProvider>
-        </Navigation>
+          </Navigation>
+        </CategoryProvider>
       </BrowserRouter>
     </>
   );

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CategoryButton from '../CategoryButton';
 import { Category } from '../../types';
 import CategoryFilterSelector from '../CategoryFilterSelector';
-import { CategoryService } from '../../service';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CategoryContext } from '../../contexts/CategortyContext';
+import Loading from '../Loading';
 
 interface NavigationProps {
   children: React.ReactNode;
@@ -12,20 +13,22 @@ interface NavigationProps {
 function Navigation({ children }: NavigationProps) {
   const [showMenuItems, setShowMenuItems] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const categoryContext = useContext(CategoryContext);
   const navigate = useNavigate();
+  const { categoryId } = useParams();
+
+  if (!categoryContext) {
+    throw new Error('useContext must be used inside a CategoryProvider');
+  }
+
+  useEffect(() => {
+    if (!categoryContext) return;
+    setCategories(categoryContext.categories);
+  }, [categoryContext]);
+
   const handleSwitchMenuStatus = () => {
     setShowMenuItems(!showMenuItems);
   };
-
-  useEffect(() => {
-    CategoryService.getCategories()
-      .then((response: any) => {
-        setCategories(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
 
   const handleNavigateToCategory = (categoryId: string) => {
     navigate(`/category/${categoryId}/posts`);
@@ -100,10 +103,12 @@ function Navigation({ children }: NavigationProps) {
                   id={category.id}
                   title={category.name}
                   isFavorite={category.favorite}
+                  activated={category.id === categoryId}
                   onClick={handleNavigateToCategory}
                 />
               );
             })}
+            {categoryId}
           </div>
         </div>
       </div>
@@ -111,7 +116,8 @@ function Navigation({ children }: NavigationProps) {
         id="contentContainer"
         className="pt-16 h-calcNav w-screen md:h-screen xs:w-screen overflow-auto"
       >
-        {children}
+        {categoryContext.loading && <Loading />}
+        {!categoryContext.loading && children}
       </div>
     </div>
   );
