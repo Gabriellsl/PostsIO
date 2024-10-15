@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CategoryButton from '../CategoryButton';
-import { CategoryFilter } from '../../types';
+import { Category } from '../../types';
 import CategoryFilterSelector from '../CategoryFilterSelector';
+import { CategoryService } from '../../service';
 
 interface NavigationProps {
   children: React.ReactNode;
@@ -9,10 +10,24 @@ interface NavigationProps {
 
 function Navigation({ children }: NavigationProps) {
   const [showMenuItems, setShowMenuItems] = useState<boolean>(false);
-
+  const [categories, setCategories] = useState<Category[]>([]);
   const handleSwitchMenuStatus = () => {
     setShowMenuItems(!showMenuItems);
   };
+
+  useEffect(() => {
+    CategoryService.getCategories()
+      .then((response: any) => {
+        setCategories(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log('categoreis -> ', categories);
+  }, [categories]);
 
   return (
     <div className="h-screen md:flex overflow-hidden">
@@ -75,7 +90,15 @@ function Navigation({ children }: NavigationProps) {
             <CategoryFilterSelector />
           </div>
           <div className="space-y-1 px-2 pb-3 pt-12 sm:px-3">
-            <CategoryButton title="Home" activated={false} />
+            {categories?.map((category: Category) => {
+              return (
+                <CategoryButton
+                  key={category.id}
+                  title={category.name}
+                  activated={category.favorite}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
