@@ -1,6 +1,7 @@
 import { useCallback, useContext } from 'react';
 import CategoryButton from '../CategoryButton';
 import { CategoryContext } from '../../contexts/CategortyContext';
+import { useNavigate } from 'react-router-dom';
 
 interface PostItemProps {
   date: string;
@@ -11,6 +12,10 @@ interface PostItemProps {
 
 function PostItem({ date, description, categoryIdList, selectedCategory }: PostItemProps) {
   const categoryContext = useContext(CategoryContext);
+  const navigate = useNavigate();
+  const handleNavigateToCategory = (categoryId: string) => {
+    navigate(`/category/${categoryId}/posts`);
+  };
 
   if (!categoryContext) {
     throw new Error('useContext must be used inside a CategoryProvider');
@@ -47,6 +52,7 @@ function PostItem({ date, description, categoryIdList, selectedCategory }: PostI
                 title={categoryName}
                 activated={categoryId === selectedCategory}
                 isFavorite={isFavorite}
+                onClick={handleNavigateToCategory}
               />
             );
           })}
