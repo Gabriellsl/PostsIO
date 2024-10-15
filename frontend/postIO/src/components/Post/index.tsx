@@ -1,5 +1,4 @@
 import CategoryButton from '../CategoryButton';
-import FavoriteButton from '../FavoriteButton';
 
 interface PostItemProps {
   date: string;
@@ -14,7 +13,7 @@ function PostItem({ date, description, categories }: PostItemProps) {
       <span className="pt-4 text-sm text-foreground-secondary">{description}</span>
       <div className="pt-4 flex flex-wrap gap-2">
         {categories.map((categoryName) => {
-          return <CategoryButton title={categoryName}></CategoryButton>;
+          return <CategoryButton id={categoryName} title={categoryName}></CategoryButton>;
         })}
       </div>
     </div>
