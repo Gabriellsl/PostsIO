@@ -106,7 +106,10 @@ function Navigation({ children }: NavigationProps) {
           </div>
         </div>
       </div>
-      <div id="contentContainer" className="h-calcNav md:h-screen overflow-auto">
+      <div
+        id="contentContainer"
+        className="pt-16 h-calcNav w-screen md:h-screen xs:w-screen overflow-auto"
+      >
         {children}
       </div>
     </div>
