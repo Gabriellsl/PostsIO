@@ -1,3 +1,3 @@
 export type UpdateCategoryFavoriteSchema = {
-  isFavorites: boolean;
+  isFavorite: boolean;
 };

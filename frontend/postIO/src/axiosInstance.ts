@@ -4,10 +4,10 @@ const axiosClient = (token: string | null = null): AxiosInstance => {
   const headers = token
     ? {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'application/json'
       }
     : {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'application/json'
       };
 
   const client = axios.create({

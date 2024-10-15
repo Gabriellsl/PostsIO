@@ -5,6 +5,7 @@ import { CategoryService } from '../service';
 export interface CategoryContextType {
   categories: Category[];
   loading: boolean;
+  updateCategories: () => Promise<void>;
 }
 
 const CategoryContext = createContext<CategoryContextType | undefined>(undefined);
@@ -18,6 +19,10 @@ const CategoryProvider = ({ children }: CategoryProviderProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
     CategoryService.getCategories()
       .then((response: any) => {
         setCategories(response.data);
@@ -27,10 +32,20 @@ const CategoryProvider = ({ children }: CategoryProviderProps) => {
         console.error(err);
         setLoading(false);
       });
-  }, []);
+  };
+
+  const updateCategories = async () => {
+    try {
+      await fetchCategories();
+    } catch (error) {
+      console.error('Error updating category:', error);
+    }
+  };
 
   return (
-    <CategoryContext.Provider value={{ categories, loading }}>{children}</CategoryContext.Provider>
+    <CategoryContext.Provider value={{ categories, loading, updateCategories }}>
+      {children}
+    </CategoryContext.Provider>
   );
 };
 
