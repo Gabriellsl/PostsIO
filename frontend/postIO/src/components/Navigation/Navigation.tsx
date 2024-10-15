@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import CategoryButton from '../CategoryButton';
-import { Category } from '../../types';
+import { Category, CategoryFilter } from '../../types';
 import CategoryFilterSelector from '../CategoryFilterSelector';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CategoryContext } from '../../contexts/CategortyContext';
@@ -16,6 +16,9 @@ function Navigation({ children }: NavigationProps) {
   const [categories, setCategories] = useState<Category[]>([]);
   const categoryContext = useContext(CategoryContext);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<CategoryFilter>(
+    CategoryFilter.ALL
+  );
   const navigate = useNavigate();
   const paramsContext = useContext(ParamsContext);
 
@@ -97,21 +100,33 @@ function Navigation({ children }: NavigationProps) {
           id="mobile-menu"
         >
           <div className="space-y-1 pt-6 px-2">
-            <CategoryFilterSelector />
+            <CategoryFilterSelector
+              selectedCategoryFilter={selectedCategoryFilter}
+              setSelectedCategoryFilter={setSelectedCategoryFilter}
+            />
           </div>
           <div className="space-y-1 px-2 pb-3 pt-12 sm:px-3">
-            {categories?.map((category: Category) => {
-              return (
-                <CategoryButton
-                  key={category.id}
-                  id={category.id}
-                  title={category.name}
-                  isFavorite={category.favorite}
-                  activated={category.id === selectedCategory}
-                  onClick={handleNavigateToCategory}
-                />
-              );
-            })}
+            {categories
+              ?.filter((category: Category) => {
+                if (selectedCategoryFilter === CategoryFilter.ALL) {
+                  return true;
+                } else if (selectedCategoryFilter === CategoryFilter.FAVORITE) {
+                  return category.favorite;
+                }
+                return false;
+              })
+              .map((category: Category) => {
+                return (
+                  <CategoryButton
+                    key={category.id}
+                    id={category.id}
+                    title={category.name}
+                    isFavorite={category.favorite}
+                    activated={category.id === selectedCategory}
+                    onClick={handleNavigateToCategory}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>

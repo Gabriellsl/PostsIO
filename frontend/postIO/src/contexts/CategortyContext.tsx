@@ -10,10 +10,10 @@ export interface CategoryContextType {
 const CategoryContext = createContext<CategoryContextType | undefined>(undefined);
 
 interface CategoryProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
-const CategoryProvider = ({ children } : CategoryProviderProps) => {
+const CategoryProvider = ({ children }: CategoryProviderProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,9 +30,7 @@ const CategoryProvider = ({ children } : CategoryProviderProps) => {
   }, []);
 
   return (
-    <CategoryContext.Provider value={{ categories, loading }}>
-      {children}
-    </CategoryContext.Provider>
+    <CategoryContext.Provider value={{ categories, loading }}>{children}</CategoryContext.Provider>
   );
 };
 

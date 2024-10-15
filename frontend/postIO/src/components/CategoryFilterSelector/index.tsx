@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import { CategoryFilter } from '../../types';
 
-function CategoryFilterSelector() {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>(CategoryFilter.ALL);
+interface CategoryFilterSelectorProps {
+  selectedCategoryFilter: CategoryFilter;
+  setSelectedCategoryFilter: (categoryFilter: CategoryFilter) => void;
+}
 
+function CategoryFilterSelector({
+  selectedCategoryFilter,
+  setSelectedCategoryFilter
+}: CategoryFilterSelectorProps) {
   return (
     <div className="text-foreground flex">
       <span className="flex items-center text-xs">
@@ -12,8 +18,8 @@ function CategoryFilterSelector() {
           name="category"
           value="allCategories"
           className={`mr-2`}
-          checked={selectedCategory === CategoryFilter.ALL}
-          onChange={() => setSelectedCategory(CategoryFilter.ALL)}
+          checked={selectedCategoryFilter === CategoryFilter.ALL}
+          onChange={() => setSelectedCategoryFilter(CategoryFilter.ALL)}
         />
         All categories
       </span>
@@ -24,8 +30,8 @@ function CategoryFilterSelector() {
           name="category"
           value="favoriteCategories"
           className=" ml-4 mr-2"
-          checked={selectedCategory === CategoryFilter.FAVORITE}
-          onChange={() => setSelectedCategory(CategoryFilter.FAVORITE)}
+          checked={selectedCategoryFilter === CategoryFilter.FAVORITE}
+          onChange={() => setSelectedCategoryFilter(CategoryFilter.FAVORITE)}
         />
         Favorite categories
       </span>
