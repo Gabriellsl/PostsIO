@@ -22,7 +22,7 @@ function Category() {
   return (
     <PostList>
       <PostListHeader selectedCategory={categoryId} postsInCategory={postList.length} />
-      <PostListBody postList={postList} />
+      <PostListBody postList={postList} selectedCategory={categoryId} />
     </PostList>
   );
 }
