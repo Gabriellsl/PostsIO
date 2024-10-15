@@ -1,12 +1,13 @@
 import CategoryButton from '../CategoryButton';
 import FavoriteButton from '../FavoriteButton';
 
-interface PostProps {
+interface PostItemProps {
   date: string;
   description: string;
   categories: string[];
 }
-function Post({ date, description, categories }: PostProps) {
+
+function PostItem({ date, description, categories }: PostItemProps) {
   return (
     <div className="px-4 py-8 flex flex-col border-b">
       <label className="text-primary text-sm font-semibold">{date}</label>
@@ -20,4 +21,4 @@ function Post({ date, description, categories }: PostProps) {
   );
 }
 
-export default Post;
+export default PostItem;

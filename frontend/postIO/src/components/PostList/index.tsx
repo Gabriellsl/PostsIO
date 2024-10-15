@@ -1,13 +1,11 @@
-import PostListBody from './PostListBody';
-import PostListHeader from './PostListHeader';
+import { ReactNode } from 'react';
 
-function PostList() {
-  return (
-    <div className="mt-16 md:mx-6 mx-4 mb-4 border rounded border-accent">
-      <PostListHeader />
-      <PostListBody />
-    </div>
-  );
+interface PostListProps {
+  children: ReactNode;
+}
+
+function PostList({ children }: PostListProps) {
+  return <div className="mt-16 md:mx-6 mx-4 mb-4 border rounded border-accent">{children}</div>;
 }
 
 export default PostList;

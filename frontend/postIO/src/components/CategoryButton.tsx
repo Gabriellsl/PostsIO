@@ -1,19 +1,24 @@
 import FavoriteButton from './FavoriteButton';
 
-interface CategoryButton {
+interface CategoryButtonProps {
+  id: string;
   title: string;
   activated?: boolean;
+  isFavorite?: boolean;
+  onClick?: (categoryId: string) => void;
 }
 
-function CategoryButton({ title, activated }: CategoryButton) {
+function CategoryButton({ id, title, activated, isFavorite, onClick }: CategoryButtonProps) {
   return (
     <a
-      href="#"
-      className={`flex w-fit block rounded-md text-sm font-semibold ${activated ? 'bg-transparent text-primary border border-primary' : 'bg-primary'} pl-6 py-2 pr-4 text-base font-medium text-white items-center`}
+      className={`flex w-fit block rounded-md text-sm font-semibold ${activated ? 'bg-transparent text-primary border border-primary' : 'bg-primary text-primary-foreground'} pl-6 py-2 pr-4 text-base font-medium items-center`}
       aria-current="page"
+      onClick={() => {
+        onClick && onClick(id);
+      }}
     >
       <label>{title}</label>
-      <FavoriteButton isFavorite={false} />
+      <FavoriteButton isFavorite={isFavorite} />
     </a>
   );
 }

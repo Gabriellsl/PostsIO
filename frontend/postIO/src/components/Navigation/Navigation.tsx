@@ -3,6 +3,7 @@ import CategoryButton from '../CategoryButton';
 import { Category } from '../../types';
 import CategoryFilterSelector from '../CategoryFilterSelector';
 import { CategoryService } from '../../service';
+import { useNavigate } from 'react-router-dom';
 
 interface NavigationProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface NavigationProps {
 function Navigation({ children }: NavigationProps) {
   const [showMenuItems, setShowMenuItems] = useState<boolean>(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const navigate = useNavigate();
   const handleSwitchMenuStatus = () => {
     setShowMenuItems(!showMenuItems);
   };
@@ -25,9 +27,9 @@ function Navigation({ children }: NavigationProps) {
       });
   }, []);
 
-  useEffect(() => {
-    console.log('categoreis -> ', categories);
-  }, [categories]);
+  const handleNavigateToCategory = (categoryId: string) => {
+    navigate(`/category/${categoryId}/posts`);
+  };
 
   return (
     <div className="h-screen md:flex overflow-hidden">
@@ -94,8 +96,10 @@ function Navigation({ children }: NavigationProps) {
               return (
                 <CategoryButton
                   key={category.id}
+                  id={category.id}
                   title={category.name}
-                  activated={category.favorite}
+                  isFavorite={category.favorite}
+                  onClick={handleNavigateToCategory}
                 />
               );
             })}
