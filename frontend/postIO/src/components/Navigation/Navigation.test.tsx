@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 import { CategoryContext } from '../../contexts/CategortyContext';
 import { ParamsContext } from '../../contexts/ParamsContext';
-import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
 
 const mockCategories = [
   { id: '1', name: 'Category 1', favorite: false },

@@ -39,8 +39,12 @@ function PostItem({ date, description, categoryIdList, selectedCategory }: PostI
 
   return (
     <div className="px-4 py-8 flex flex-col border-b">
-      <label className="text-primary text-sm font-semibold">{date}</label>
-      <span className="pt-4 text-sm text-foreground-secondary">{description}</span>
+      <label data-testid="post-date" className="text-primary text-sm font-semibold">
+        {date}
+      </label>
+      <span data-testid="post-description" className="pt-4 text-sm text-foreground-secondary">
+        {description}
+      </span>
       <div className="pt-4 flex flex-wrap gap-2">
         {!loading &&
           categoryIdList?.map((categoryId) => {
