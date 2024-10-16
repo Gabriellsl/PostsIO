@@ -1,18 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CategoryContext } from '../../contexts/CategortyContext';
-import { CategoryService } from '../../service';
 import { describe, expect, it, vi } from 'vitest';
 import CategoryButton from './CategoryButton';
-import CategoryServ from '../../service/categoryServ';
-
-vi.mock('../../service/categoryServ', () => {
-  return {
-    __esModule: true, // permite importação como módulo ES
-    default: vi.fn().mockImplementation(() => ({
-      updateCategoryFavorite: vi.fn()
-    }))
-  };
-});
 
 interface CategoryButtonProps {
   id: string;

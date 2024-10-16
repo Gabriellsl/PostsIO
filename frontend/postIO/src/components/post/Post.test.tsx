@@ -1,4 +1,3 @@
-// PostItem.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CategoryContext } from '../../contexts/CategortyContext';
 import { MemoryRouter } from 'react-router-dom';
