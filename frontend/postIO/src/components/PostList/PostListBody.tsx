@@ -1,5 +1,5 @@
 import { Post } from '../../types';
-import PostItem from '../Post';
+import PostItem from '../post';
 
 interface PostListBodyProps {
   postList: Post[];

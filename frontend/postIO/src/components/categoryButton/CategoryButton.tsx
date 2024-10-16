@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { CategoryService } from '../service';
-import FavoriteButton from './FavoriteButton';
-import { CategoryContext } from '../contexts/CategortyContext';
+import { CategoryService } from '../../service';
+import FavoriteButton from '../favoriteButton/FavoriteButton';
+import { CategoryContext } from '../../contexts/CategortyContext';
 
 interface CategoryButtonProps {
   id: string;

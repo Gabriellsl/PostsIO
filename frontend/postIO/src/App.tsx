@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import NotFound from './pages/NotFound';
-import Navigation from './components/Navigation/Navigation';
+import Navigation from './components/navigation/Navigation';
 import Homepage from './pages/Homepage';
 import Category from './pages/Category';
 import { CategoryProvider } from './contexts/CategortyContext';

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import CategoryButton from '../CategoryButton';
+import CategoryButton from '../categoryButton/CategoryButton';
 import { CategoryContext } from '../../contexts/CategortyContext';
 import { useNavigate } from 'react-router-dom';
 

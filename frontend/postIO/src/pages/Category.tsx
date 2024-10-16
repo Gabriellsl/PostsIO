@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-import PostList from '../components/PostList';
+import PostList from '../components/postList';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { CategoryService } from '../service';
 import { Post } from '../types';
-import PostListHeader from '../components/PostList/PostListHeader';
-import PostListBody from '../components/PostList/PostListBody';
+import PostListHeader from '../components/postList/PostListHeader';
+import PostListBody from '../components/postList/PostListBody';
 import { CategoryContext } from '../contexts/CategortyContext';
 
 function Category() {

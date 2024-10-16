@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import CategoryButton from '../CategoryButton';
+import CategoryButton from '../categoryButton/CategoryButton';
 import { Category, CategoryFilter } from '../../types';
-import CategoryFilterSelector from '../CategoryFilterSelector';
-import { useNavigate, useParams } from 'react-router-dom';
+import CategoryFilterSelector from '../categoryFilterSelector/CategoryFilterSelector';
+import { useNavigate } from 'react-router-dom';
 import { CategoryContext } from '../../contexts/CategortyContext';
-import Loading from '../Loading';
+import Loading from '../loading/Loading';
 import { ParamsContext } from '../../contexts/ParamsContext';
-import Nav from '../Nav';
+import Nav from './Nav';
 
 interface NavigationProps {
   children: React.ReactNode;
