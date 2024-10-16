@@ -8,8 +8,12 @@ interface FavoriteButtonProps {
 
 function FavoriteButton({ isFavorite, onClick }: FavoriteButtonProps) {
   return (
-    <span className={`w-4 ml-2`} onClick={() => onClick(!isFavorite)}>
-      {isFavorite ? <ActiveStarIcon /> : <StarIcon />}
+    <span data-testid="favorite-button" className={`w-4 ml-2`} onClick={() => onClick(!isFavorite)}>
+      {isFavorite ? (
+        <ActiveStarIcon data-testid="active-star-icon" />
+      ) : (
+        <StarIcon data-testid="outline-star-icon" />
+      )}
     </span>
   );
 }
