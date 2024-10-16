@@ -10,6 +10,7 @@ function Nav({ handleSwitchMenuStatus, showMenuItems }: NavProps) {
         <div className="flex h-16 items-center sm:justify-start md:justify-center text-primary-foreground text-sm">
           <div className="-mr-2 flex md:hidden">
             <button
+              data-testid="nav-button"
               type="button"
               className="md:hidden relative p-2 inline-flex items-center justify-center rounded-md text-gray-400 hover:text-white"
               aria-controls="mobile-menu"
@@ -18,6 +19,7 @@ function Nav({ handleSwitchMenuStatus, showMenuItems }: NavProps) {
             >
               {!showMenuItems ? (
                 <svg
+                  data-testid="menu-icon"
                   className="block h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -34,6 +36,7 @@ function Nav({ handleSwitchMenuStatus, showMenuItems }: NavProps) {
                 </svg>
               ) : (
                 <svg
+                  data-testid="close-icon"
                   className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
