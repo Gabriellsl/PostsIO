@@ -2,6 +2,11 @@
 
 Postio is a React project built with Vite and TypeScript, utilizing Tailwind CSS for styling and providing a modern and responsive interface. This project is ideal for managing posts and categories.
 
+
+
+> [!note]
+> **To run backend:** Run `yarn` in backend folder to install dependencies. Run the server with `yarn start`. The API is served at [http://localhost:9000](http://localhost:9000/), and you can go to `/docs` to explore the API documentation.
+
 ## 📦 Installation
 
 To install the project dependencies, follow the steps below:
@@ -57,3 +62,5 @@ The project uses the following development dependencies:
 
 📬 Contact
 If you have any questions or suggestions, feel free to reach out.
+
+
