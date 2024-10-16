@@ -53,6 +53,7 @@ function Navigation({ children }: NavigationProps) {
         <Nav handleSwitchMenuStatus={handleSwitchMenuStatus} showMenuItems={showMenuItems} />
 
         <div
+          data-testid="mobile-nav"
           className={`${showMenuItems ? 'max-h-fit' : 'max-h-0'} md:max-h-screen	 md:w-80 md:h-screen overflow-hidden transition-all ease-in-out delay-200 border-b-2 mb-2 md:border-r border-accent`}
           id="mobile-menu"
         >
