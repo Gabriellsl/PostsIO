@@ -10,6 +10,7 @@ function RadioButton({ value, checked, onChange, label, classNames }: RadioButto
   return (
     <span className="flex items-center text-xs">
       <input
+        data-testid={label}
         type="radio"
         name="category"
         value={value}
